@@ -22,7 +22,7 @@ pipeline {
                     }
 
                     bat '''
-                            docker-compose build
+                            docker-compose -f docker-compose.yml build
 
                         '''
                     echo '\033[34m######################################################################################\033[0m'
@@ -32,7 +32,7 @@ pipeline {
                     echo '\033[35m######################################################################################\033[0m'
                     withDockerRegistry([ credentialsId: "${env.DOCKER_REGISTRY_CREDENTIALS}", url: "" ]) {
                         bat '''
-                            docker-compose push
+                            docker-compose -f docker-compose.yml push
                         '''
                     }
                     echo '\033[35m######################################################################################\033[0m'
