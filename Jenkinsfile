@@ -1,4 +1,3 @@
-# react app pipeline
 pipeline {
     agent any
     options {
