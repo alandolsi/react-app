@@ -20,7 +20,7 @@ pipeline {
                     withCredentials([file(credentialsId: ISOADCA, variable: 'ISOADCA_SSL_CERT_SECRET_FILE')]) {
                             writeFile file: '/usr/src/app/isoadca.crt', text: readFile(ISOADCA_SSL_CERT_SECRET_FILE)
                         bat '''
-                            docker-compose -f .\docker-compose.yml build
+                            docker-compose -f docker-compose.yml build
                         '''
                     }
 
@@ -32,7 +32,7 @@ pipeline {
                     echo '\033[35m######################################################################################\033[0m'
                     withDockerRegistry([ credentialsId: "${env.DOCKER_REGISTRY_CREDENTIALS}", url: "" ]) {
                         bat '''
-                            docker-compose -f .\docker-compose.yml push
+                            docker-compose -f docker-compose.yml push
                         '''
                     }
                     echo '\033[35m######################################################################################\033[0m'
