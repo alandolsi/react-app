@@ -22,7 +22,7 @@ pipeline {
                     }
 
                     bat '''
-                            docker build -t ldiiso/react-app:1.0.0 .
+                            docker-compose build
 
                         '''
                     echo '\033[34m######################################################################################\033[0m'
@@ -32,7 +32,7 @@ pipeline {
                     echo '\033[35m######################################################################################\033[0m'
                     withDockerRegistry([ credentialsId: "${env.DOCKER_REGISTRY_CREDENTIALS}", url: "" ]) {
                         bat '''
-                            docker push ldiiso/react-app:1.0.0
+                            docker-compose push
                         '''
                     }
                     echo '\033[35m######################################################################################\033[0m'
